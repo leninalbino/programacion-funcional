@@ -9,4 +9,5 @@ public interface IServiceProduct {
 	void deleteById(int id);
 	public Product updateProduct(Product upProduct);
 	void  buscar(int id);
+	boolean checkId (int id);
 }

@@ -51,8 +51,15 @@ public Product updateProduct(Product upProduct) {
 
 @Override
 public void buscar(int id) {
-	//listaProducto=listaProducto.stream().allMatch(p->p.getId()!=id);
-	
+	 List<Product>listaP=listaProducto.stream().filter(p->p.getId()==id || p.getName().equals(p.getName())).collect(Collectors.toList());
+	listaP.forEach(System.out::println);
+}
+
+@Override
+public boolean checkId(int id) {
+	boolean respuesta;
+	respuesta = listaProducto.stream().anyMatch(p -> p.getId() == id);
+	return respuesta;
 }
 	
 }

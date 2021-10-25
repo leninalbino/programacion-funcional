@@ -4,6 +4,8 @@ package org.java8.evaluacion1;
 
 import javax.swing.JOptionPane;
 
+import lombok.Builder.Default;
+
 public class Main {
 
 	/*
@@ -32,7 +34,7 @@ public class Main {
 	        			+ "\n1. Listar \n2.Agregar \n3.Buscar \n4.Actualizar \n5.Eliminar \n6.Cancelar"));
 	        	switch(menu){
 	        	case(1):
-	        		System.out.println("hola");
+	        		
 	        		productService.findProduct();
 	        		break;
 	        	case(2):
@@ -47,15 +49,21 @@ public class Main {
 	        		break;
 	        	
 	        	case(3):
-	        		
+	        		id=Integer.parseInt( JOptionPane.showInputDialog("Ingrese el Id: "));
+	        	if (productService.checkId(id)==true) {
+	        	productService.buscar(id);
+	        	}else System.out.println("Producto con el id "+ id + "no encontrado");
 	        		break;
 	        	case(4):
 	        		id=Integer.parseInt( JOptionPane.showInputDialog("Ingrese el Id: "));
+	        	if(productService.checkId(id)== true) {
         		name= JOptionPane.showInputDialog("Ingrese el Nombre: ");
         		price=Double.parseDouble( JOptionPane.showInputDialog("Ingrese el Precio: "));
         		stock=Integer.parseInt( JOptionPane.showInputDialog("Ingrese el Stock: "));
         		Product pro2 = new Product(id, name, price, stock);
         		productService.updateProduct(pro2);
+        		System.out.println("Se actualizo correstamente");
+	        	}else System.out.println("Error!!  el producto con " + id + " no exixte");
 	        		break;
 	        	case(5):
 	        		id=Integer.parseInt( JOptionPane.showInputDialog("Ingrese el Id: "));
@@ -64,6 +72,7 @@ public class Main {
 	        	case(6):
 	        		
 	        		break;
+	        	default: System.out.println("La opcion ingresada es incorrecta!!!!");
 	        	}
 	        
 	        
